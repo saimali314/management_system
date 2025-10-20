@@ -22,7 +22,7 @@ if "neon.tech" in DATABASE_URL and "sslmode" not in DATABASE_URL:
 engine = create_engine(DATABASE_URL, pool_pre_ping=True)
 
 # Create session factory
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Base class for models
 Base = declarative_base()
