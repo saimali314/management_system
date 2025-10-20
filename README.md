@@ -1,18 +1,51 @@
-# invoTrack — FastAPI + PostgreSQL + SQLAlchemy + React
+# 🧾 Management System — FastAPI + PostgreSQL + SQLAlchemy + React
 
-A simple full-stack demo: **FastAPI** backend with **PostgreSQL** & **SQLAlchemy**, and a **React** frontend.
-- Backend runs on **http://127.0.0.1:9000**
-- Frontend runs on **http://127.0.0.1:3000**
-
-## Features (API)
-- `GET /` — welcome
-- `GET /products` — list all products
-- `GET /products/{id}` — get one product
-- `POST /products` — create product (Pydantic validation)
+A **full-stack product management system** built using **FastAPI** (backend), **React** (frontend), and **PostgreSQL** via **SQLAlchemy ORM**.  
+The project demonstrates RESTful API design, data validation with Pydantic, and modern full-stack integration.
 
 ---
 
-## 🧱 Project Structure
+## 🚀 Live Demo
+
+- **Frontend (React on Netlify):** [https://68f6ad9bde25714da12c6e36--managementsysz.netlify.app/](https://68f6ad9bde25714da12c6e36--managementsysz.netlify.app/)
+- **Backend (FastAPI on Render):** [https://management-system-5sfn.onrender.com/](https://management-system-5sfn.onrender.com/)
+
+> 🔹 Both deployments are hosted on free tiers — please allow a few seconds for the backend to spin up when first accessed.
+
+---
+
+## 🧱 Tech Stack
+
+**Frontend:**  
+- React  
+- Axios (API requests)  
+- Bootstrap / CSS  
+
+**Backend:**  
+- FastAPI (Python 3.10+)  
+- SQLAlchemy ORM  
+- Pydantic (Validation)  
+- PostgreSQL (Neon)  
+- Uvicorn (ASGI Server)
+
+**Deployment:**  
+- Render (Backend)  
+- Netlify (Frontend)  
+
+---
+
+## 📦 Features
+
+✅ RESTful CRUD APIs for product management  
+✅ Pydantic validation for request/response models  
+✅ SQLAlchemy ORM with PostgreSQL for data persistence  
+✅ CORS-enabled backend communication with React  
+✅ Frontend built with React + Axios to consume APIs  
+✅ Live demo deployment on Render (API) and Netlify (UI)
+
+---
+
+## ⚙️ Project Structure
 ├── frontend/
 │ ├── src/ # React app code
 │ ├── package.json
@@ -54,3 +87,4 @@ npm start
 - SQLAlchemy + PostgreSQL 
 - React (Frontend)
 - Pydantic (Data validation)
+- Render + Netlify
