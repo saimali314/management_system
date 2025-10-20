@@ -10,9 +10,15 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://managementsysz.netlify.app/"],
-    allow_methods=["*"]
+    allow_origins=[
+        "https://managementsysz.netlify.app",  # no trailing slash
+        "http://localhost:3000",               # dev
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
+
 
 database_model.Base.metadata.create_all(bind=engine)
 
@@ -34,7 +40,7 @@ def get_db():
 
 def init_db():
     db = session()
-    count = db.query(database_model.Product).count
+    count = db.query(database_model.Product).count()
 
     if count==0:
         for product in products:
@@ -44,7 +50,7 @@ def init_db():
 
 init_db()
 
-@app.get("/products")
+@app.get("/products/")
 def get_all_products(db: Session = Depends(get_db)):
     # # db connection
     # # query
@@ -52,7 +58,7 @@ def get_all_products(db: Session = Depends(get_db)):
 
     return db_products
 
-@app.get("/products/{id}")
+@app.get("/products/{id}/")
 def get_product_by_id(id: int, db: Session = Depends(get_db)):
     db_product = db.query(database_model.Product).filter(database_model.Product.id == id).first()
     if db_product:
@@ -64,14 +70,14 @@ def get_product_by_id(id: int, db: Session = Depends(get_db)):
 
     return "product not found"
 
-@app.post("/products")
+@app.post("/products/")
 def add_product(product: Product, db: Session = Depends(get_db)):
     db.add(database_model.Product(**product.model_dump()))
     db.commit()
     # products.append(product)
     return product
 
-@app.put("/products/{id}")
+@app.put("/products/{id}/")
 def update_product(id: int, product: Product, db: Session = Depends(get_db)):
     db_product = db.query(database_model.Product).filter(database_model.Product.id == id).first()
     if db_product:
@@ -89,7 +95,7 @@ def update_product(id: int, product: Product, db: Session = Depends(get_db)):
     else:
         return "No Product found"
 
-@app.delete("/products/{id}")
+@app.delete("/products/{id}/")
 def delete_product(id: int, db: Session = Depends(get_db)):
     db_product = db.query(database_model.Product).filter(database_model.Product.id == id).first()
     if db_product:
