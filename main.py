@@ -11,9 +11,10 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://managementsysz.netlify.app",  # no trailing slash
+        "https://managementsysz.netlify.app",  # main site
         "http://localhost:3000",               # dev
     ],
+    allow_origin_regex=r"https://.*\.netlify\.app$",  # allow all Netlify preview subdomains
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
