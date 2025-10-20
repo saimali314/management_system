@@ -7,15 +7,12 @@ from database import engine
 from sqlalchemy.orm import Session
 
 app = FastAPI()
+from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://managementsysz.netlify.app",  # main site
-        "http://localhost:3000",               # dev
-    ],
-    allow_origin_regex=r"https://.*\.netlify\.app$",  # allow all Netlify preview subdomains
-    allow_credentials=True,
+    allow_origins=["*"],      # TEMP: allow all
+    allow_credentials=False,  # must be False when using "*"
     allow_methods=["*"],
     allow_headers=["*"],
 )
