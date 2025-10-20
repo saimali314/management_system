@@ -3,9 +3,13 @@ import axios from "axios";
 import "./App.css";
 import TaglineSection from "./TaglineSection";
 
+const API_BASE =
+  (process.env.REACT_APP_API_BASE || "").replace(/\/+$/, "") || "http://localhost:9000";
+
 const api = axios.create({
-  baseURL: "http://localhost:9000",
+  baseURL: API_BASE,
 });
+
 
 function App() {
   const [products, setProducts] = useState([]);
